@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Service implements Serializable{
 	
 	@PrintAnnotation
-	public void method1() {
+	public void method1(String name) throws Exception {
 		System.out.println("메서드1에서 출력되었습니다.");
 	}
 	
