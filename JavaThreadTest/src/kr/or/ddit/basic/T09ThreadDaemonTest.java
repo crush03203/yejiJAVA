@@ -5,6 +5,7 @@ public class T09ThreadDaemonTest {
 
 		AutoSaveThread autoSave = new AutoSaveThread();
 		// 데몬스레드로 설정하기(start() 호출전에 설정한다.)
+		//데몬스레드 일반스레드를 보조한다/ 일반스레드가 없으면 자결함
 		autoSave.setDaemon(true);
 		autoSave.start();
 
