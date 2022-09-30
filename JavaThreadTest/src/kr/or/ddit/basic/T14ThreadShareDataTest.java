@@ -7,6 +7,14 @@ package kr.or.ddit.basic;
  * */
 public class T14ThreadShareDataTest {
 
+	public static void main(String[] args) {
+		ShareData sd= new ShareData();
+		CalcPIThread cth = new CalcPIThread(sd);
+		PrintPIThread pth = new PrintPIThread(sd);
+		
+		cth.start();
+		pth.start();
+	}
 }
 
 class ShareData {
