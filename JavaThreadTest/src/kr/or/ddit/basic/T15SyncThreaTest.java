@@ -24,7 +24,7 @@ class ShareObject {
 	// 동기화 하는 방법 1 : 메서드 자체에 동기화 처리하기
 	public void add() {
 
-		// 동기화 한는 방법2: 동기화 블럭으로 설정하기
+		// 동기화 하는 방법2: 동기화 블럭으로 설정하기
 		// mutex : Mutual exclusion Object(상호배체 : 동시 접근 차단)
 		synchronized (this) {
 			for (int i = 0; i < 1000000000; i++) {
@@ -34,9 +34,8 @@ class ShareObject {
 			n += 10;
 			sum = n;
 
+			System.out.println(Thread.currentThread().getName() + "합계: " + sum);
 		}
-
-		System.out.println(Thread.currentThread().getName() + "합계: " + sum);
 
 	}
 }
@@ -53,7 +52,11 @@ class WorkerThread extends Thread {
 	@Override
 	public void run() {
 		for (int i = 1; i <= 10; i++) {
-			sObj.add();
+			//동기화 하는 방법2 : 동기화 블럭으로 설정하기2
+			synchronized (sObj) {
+				sObj.add();
+				
+			}
 		}
 	}
 }
