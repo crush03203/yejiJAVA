@@ -1,5 +1,7 @@
 package kr.or.ddit.basic;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 public class T15SyncThreaTest {
 
 	public static void main(String[] args) {
@@ -19,12 +21,19 @@ public class T15SyncThreaTest {
 class ShareObject {
 	private int sum = 0;
 
+	// 동기화 하는 방법 1 : 메서드 자체에 동기화 처리하기
 	public void add() {
 		for (int i = 0; i < 1000000000; i++) {} //시간떄우기용
-
+		
+		//동기화 한는 방법2: 동기화 블럭으로 설정하기
+		//mutex : Mutual exclusion Object(상호배체 : 동시 접근 차단)
+		synchronized (this) {
+			
 			int n = sum;
 			n += 10;
 			sum = n;
+
+		}
 
 			System.out.println(Thread.currentThread().getName() + "합계: " + sum);
 
