@@ -5,6 +5,14 @@ package kr.or.ddit.basic;
  * */
 public class T16SyncAccountTest {
 	public static void main(String[] args) {
+		SyncAccount sAcc = new SyncAccount();
+		sAcc.deposit(10000);
+		
+		Thread th1 = new BankThread(sAcc);
+		Thread th2 = new BankThread(sAcc);
+		
+		th1.start();
+		th2.start();
 
 	}
 
@@ -25,12 +33,12 @@ class SyncAccount {
 
 	// 출금 처리하는 메서드(출금 성공 : true, 출금 실패: false 반환)
 	// 동기화 영역에서 호출하는 메서드도 동기화 처리를 해 주여야 한다.
-	public boolean withdraw(int money) {
+	synchronized public boolean withdraw(int money) {
 		if (balance >= money) {
 			// 잔액이 많을 경우...
 
-			for (int i = 1; i <= 1000000000; i++) {
-			}
+			for (int i = 1; i <= 1000000000; i++) {}
+			
 			balance -= money;
 			System.out.println("메서드 안에서 balance =" + getBalance());
 			return true;
@@ -52,7 +60,7 @@ class BankThread extends Thread {
 
 	@Override
 	public void run() {
-		boolean result = sAcc.withdraw(6000); // 6000dnjs dlscnf
+		boolean result = sAcc.withdraw(6000); // 6000원 인출
 		System.out.println("스레드안에서 result =" + result + ", balance = " + sAcc.getBalance());
 
 	}
