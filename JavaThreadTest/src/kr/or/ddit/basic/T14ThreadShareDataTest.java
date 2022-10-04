@@ -8,6 +8,7 @@ package kr.or.ddit.basic;
 public class T14ThreadShareDataTest {
 
 	public static void main(String[] args) {
+		
 		ShareData sd= new ShareData();
 		CalcPIThread cth = new CalcPIThread(sd);
 		PrintPIThread pth = new PrintPIThread(sd);
@@ -19,7 +20,14 @@ public class T14ThreadShareDataTest {
 
 class ShareData {
 	private double result; // 원주율이 저장될 변수
-	private boolean isOk = false; // 원주율 계산 완료여부 확인용.
+	
+	/*
+	 * volatile => 선언된 변수를 컴파일러의 최적화 대상에서 제외시킨다.
+	 * 		즉, 값이 변경되는 즉시 변수에 적용시킨다. 멀티스레드 환경에서
+	 * 		하나의 변수가 완벽하게 한번에 작동하도록 보장하는 키워드
+	 * 		(일종의 동기화)
+	 * */
+	volatile private boolean isOk = false; // 원주율 계산 완료여부 확인용.
 
 	public double getResult() {
 		return result;
@@ -59,6 +67,7 @@ class CalcPIThread extends Thread {
 		double sum = 0.0;
 		for (int i = 1; i < 15000000; i += 2) {
 			if (((i / 2) % 2) == 0) {
+				sum += (1.0/i);
 
 			} else {
 				sum -= (1.0 / i);
@@ -75,7 +84,7 @@ class PrintPIThread extends Thread {
 
 	private ShareData sd;
 
-	public PrintPIThread(ShareData sa) {
+	public PrintPIThread(ShareData sd) {
 		this.sd = sd;
 
 	}
