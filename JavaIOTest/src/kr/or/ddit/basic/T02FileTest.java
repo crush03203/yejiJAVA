@@ -1,7 +1,12 @@
 package kr.or.ddit.basic;
 
+import java.awt.DisplayMode;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class T02FileTest {
 	public static void main(String[] args) {
@@ -49,5 +54,80 @@ public class T02FileTest {
 		}
 		System.out.println("------------------------------");
 		System.out.println();
+//===================================================================================
+
+// 출력할 디렉토리 정보를 갖는 File 객체 생성
+		File f4 = new File("D:/D_Other");
+		displayFileList(f4); // 파일목록을 조회
+	}
+
+	// 지정된 디렉토리(폴더)에 포람된 파일과 디렉토리 목록을 보여주는 메서드
+	private static void displayFileList(File dir) {
+		System.out.println("[" + dir.getAbsolutePath() + "] 디렉토리의 내용");
+
+		// 디렉토리 안의 모든 파일 목록을 가져온다
+		File[] files = dir.listFiles();
+
+		// 하위 디렉토리의 정보를 저장할 List객체 생성(인덱스값 저장용)
+		List<Integer> subDirList = new ArrayList<Integer>();
+
+		// 날짜를 출력하기 위한 형식 설정
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd a hh:mm"); //a 오전/오후를 나타냄
+
+		for (int i = 0; i < files.length; i++) {
+			
+			// 파일속성(읽기, 쓰기, 히든, 디렉토리구분)
+			String attr = "";
+			// 파일용량
+			String size = "";
+
+			if (files[i].isDirectory()) {
+				attr = "<DID>";
+				subDirList.add(i);
+
+			} else {
+				size = files[i].length() + "";
+				attr = files[i].canRead() ? "R" : " ";
+				attr += files[i].canWrite() ? "W" : " ";
+				attr += files[i].isHidden() ? "H" : " ";
+			}
+			System.out.printf("%s %5s %12s %s\n", sdf.format(new Date(files[i].lastModified())), attr, size,
+					files[i].getName());
+		}
+		int dirCnt = subDirList.size(); // 폴더안의 하위폴더 개수
+
+		// 폴더안의 파일 개수 
+		int fileCnt = files.length - dirCnt;
+
+		System.out.println(fileCnt + "개의 파일, " + dirCnt + " 개의 디렉토리");
+		System.out.println();
+		
+		//재귀함수 나를 호출 나 자신을 다시 호출
+		for(Integer i : subDirList) {
+			
+			displayFileList(files[i]);
+			//재귀호출의 장점은 간편하다
+			//단점은 예외가 발생할 수 있고, 메모리를 잡아먹는다
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 	}
 }
