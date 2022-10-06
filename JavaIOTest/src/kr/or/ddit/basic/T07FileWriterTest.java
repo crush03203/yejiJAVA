@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /*
- * FileWriter 예제
+ * FileWriter 예제)
  * */
 public class T07FileWriterTest {
 	public static void main(String[] args) {
