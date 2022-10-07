@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Tulips {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// 원본 파일경로
 		String oriFilePath = "D:\\D_Other\\Tulips.jpg";
 		// 복사될 파일경로
@@ -19,23 +19,24 @@ public class Tulips {
 		// 복사파일객체생성
 		File copyFile = new File(copyFilePath);
 
-		try {
+		FileInputStream fis = new FileInputStream(oriFile); // 읽을파일
+		FileOutputStream fos = new FileOutputStream(copyFile); // 복사할파일
 
-			FileInputStream fis = new FileInputStream(oriFile); // 읽을파일
-			FileOutputStream fos = new FileOutputStream(copyFile); // 복사할파일
-
-			int fileByte = 0;
-			// fis.read()가 -1 이면 파일을 다 읽은것
-			while ((fileByte = fis.read()) != -1) {
-				fos.write(fileByte);
-			}
-			// 자원사용종료
-			fis.close();
-			fos.close();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
+		int fileByte = 0;
+		// fis.read()가 -1 이면 파일을 다 읽은것
+		// 자원사용종료
+		while ((fileByte = fis.read()) != -1) {
+			fos.write(fileByte);
 		}
+		fis.close();
+		fos.close();
+
 	}
 }
+
+
+/**
+ * 
+ */
+
+

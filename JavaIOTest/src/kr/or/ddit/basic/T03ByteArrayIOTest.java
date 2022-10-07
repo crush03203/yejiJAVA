@@ -51,6 +51,7 @@ public class T03ByteArrayIOTest {
 		
 		bais.close();
 		baos.close();
+		
 		System.out.println("inSrc =>" + Arrays.toString(inSrc));
 		System.out.println("outSrc =>" + Arrays.toString(outSrc));
 	}
