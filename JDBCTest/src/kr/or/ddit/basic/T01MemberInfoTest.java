@@ -354,7 +354,7 @@ public class T01MemberInfoTest {
 		
 		return exist;
 	}
-
+/////////////////////////////////////////////////////////////////////////
 	public static void main(String[] args) {
 		T01MemberInfoTest memObj = new T01MemberInfoTest();
 		memObj.start();
