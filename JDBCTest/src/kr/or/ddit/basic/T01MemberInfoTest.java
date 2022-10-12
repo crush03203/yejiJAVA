@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
+import kr.or.ddit.util.JDBCUtil2;
 
 /*
 	회원정보를 관리하는 프로그램을 작성하는데 
@@ -74,17 +75,20 @@ public class T01MemberInfoTest {
 			switch(choice){
 				case 1 :  // 자료 입력
 					insertMember();
-			
 					break;
+
 				case 2 :  // 자료 삭제
-				
+					deleteMember();
 					break;
-				case 3 :  // 자료 수정
-				
+
+				case 3 :  // 자료 수정 //업데이트
+					updateMember();
 					break;
+
 				case 4 :  // 전체 자료 출력
-			
+					selectAllMember();
 					break;
+				
 				case 5 :  // 작업 끝
 					System.out.println("작업을 마칩니다.");
 					break;
@@ -93,8 +97,159 @@ public class T01MemberInfoTest {
 			}
 		}while(choice!=5);
 	}
+
+	/**
+	 * 전체 회원정보를 출력하기 위한 메서드
+	 */
 	
-	
+	private void selectAllMember() {
+		
+		System.out.println();
+		System.out.println("--------------------------");
+		System.out.println(" ID\t이름\t전화번호\t주소");
+		System.out.println("--------------------------");
+		
+		try {
+			conn = JDBCUtil2.getConnection();
+			
+			String sql = "select * from mymember";
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				String memId = rs.getNString("mem_id");
+				String memName = rs.getNString("mem_name");
+				String memTel = rs.getNString("mem_tel");
+				String memAddr = rs.getNString("mem_addr");
+				
+				System.out.println(memId + "\t" 
+								+ memName + "\t"
+								+ memTel + "\t"
+								+ memAddr);
+			}
+			System.out.println("==================================");
+			System.out.println("출력작업 끝");
+			
+			
+			
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}finally {
+			JDBCUtil2.close(conn, stmt, pstmt, rs);
+		}
+		
+	}
+
+	/**
+	 * 회원정보를 삭제하기 위한 메서드
+	 */
+	private void deleteMember() {
+		System.out.println();	
+		System.out.println("삭제할 회원 ID를 입력하세요.");	
+		System.out.print("회원 ID >> ");
+		
+		String memId = scan.next();
+		
+		try {
+			conn = JDBCUtil2.getConnection();
+			
+			String sql = "delete from mymember where mem_id = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setNString(1, memId);
+
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt > 0) {
+				System.out.println(memId + "회원정보 삭제 성공.");
+				
+			} else { 
+				System.out.println(memId + "회원정보 삭제 실패!!! ");
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			JDBCUtil2.close(conn, stmt, pstmt, rs);
+		}
+		
+		
+	}
+
+	/**
+	 * 회원정보를 수정하기 위한 메서드
+	 */
+	private void updateMember() {
+		
+		boolean exist = false;
+		
+		String memId = "";
+				
+		do {
+				System.out.println();	
+				System.out.println("수정할 회원 정보를 입력하세요.");	
+				System.out.print("회원 ID >> ");
+				
+				memId = scan.next();
+				
+				exist = checkMember(memId);
+				
+				//업데이트를 하려면 그 사람이 있어야하기 때문에 true
+				if(!exist) {
+					System.out.println("회원 ID가 " + memId + 
+							"인 회원은 존재하지 않습니다.");
+					System.out.println("다시 입력해 주세요.");
+			 	}
+				
+		}while(!exist);
+		
+		System.out.print("회원 이름 >> ");
+		String memName = scan.next();
+		
+		System.out.print("회원 전화번호 >> ");
+		String memTel = scan.next();
+		
+		scan.nextLine(); //버퍼 비우기
+		
+		System.out.print("회원 주소 >> ");
+		String memAddr = scan.nextLine();
+		
+		try {
+			conn = JDBCUtil2.getConnection();
+			
+			String sql = " update MYMEMBER" 
+					+ " set MEM_NAME = ?, " 
+					+ "    MEM_TEL = ?, " 
+					+ "    MEM_ADDR = ? " 
+					+ " where mem_id = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memName);
+			pstmt.setString(2, memTel);
+			pstmt.setString(3, memAddr);
+			pstmt.setString(4, memId);
+			
+			int cnt = pstmt.executeUpdate();
+			if(cnt>0) {
+				System.out.println(memId + "회원정보 수정 성공.");
+				
+			} else { 
+				System.out.println(memId + "회원정보 수정 실패.");
+			}
+			
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			JDBCUtil2.close(conn, stmt, pstmt, rs);
+		}
+		
+		
+	}
+
 	//회원정보 추가하는 메서드
 	private void insertMember() {
 		boolean exist = false;
@@ -131,10 +286,8 @@ public class T01MemberInfoTest {
 	
 	
 	try {
-		conn = DriverManager.getConnection(
-				"jdbc:oracle:thin:@localhost:1521:xe",
-				"PSY97","java");
-		
+
+		conn = JDBCUtil2.getConnection(); //커넥션 가져오기
 		String sql = "insert into MYMEMBER " 
 				+ " (MEM_ID, MEM_NAME, MEM_TEL, MEM_ADDR, REG_DT)" 
 				+ " values (?, ? ,? ,?, sysdate)";
@@ -157,17 +310,49 @@ public class T01MemberInfoTest {
 		
 	} catch(SQLException ex) {
 		ex.printStackTrace();
-	} finally {
-		if(rs != null) try {rs.close();} catch(SQLException ex) {}
-		if(stmt != null) try {stmt.close();} catch(SQLException ex) {}
-		if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
-		if(conn != null) try {conn.close();} catch(SQLException ex) {}
+	}  finally {
+		JDBCUtil2.close(conn,stmt,pstmt,rs);
 	}
 	}
 	
+	/**
+	 * 회원 ID를 이용하여 회원이 존재하는 지 체크하기 위한 메서드
+	 * @param memId 체크할 회원 ID
+	 * @return 존재하면 true, 존재하지 않으면 flase 
+	 */
 	private boolean checkMember(String memId) {
 		
-		return false;
+		boolean exist = false;
+		
+		try {
+			conn = JDBCUtil2.getConnection();
+			
+			String sql = "select count(*) as cnt "  
+						 + "from MYMEMBER "  
+						 + "where mem_id = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			rs = pstmt.executeQuery();
+			
+			int cnt = 0;
+			
+			while(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+			if(cnt > 0) {
+				exist  = true;
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			JDBCUtil2.close(conn, stmt, pstmt, rs);
+		}
+		
+		return exist;
 	}
 
 	public static void main(String[] args) {
