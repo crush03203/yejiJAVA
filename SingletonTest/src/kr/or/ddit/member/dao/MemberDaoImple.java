@@ -12,14 +12,29 @@ import java.util.List;
 
 import kr.or.ddit.member.vo.MemberVO;
 import kr.or.util.JDBCUtil3;
+import sun.security.jca.GetInstance;
 
 public class MemberDaoImple implements IMemberDao {
-
+	
+	private static IMemberDao memDao;
+	
 	private Connection conn;
 	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
+	
+	private MemberDaoImple() {
+	}
+	
+	public static IMemberDao getInstance() {
+		if(memDao == null) {
+			memDao = new MemberDaoImple();
+		}
+		return memDao;
+	}
+	
+	
 	@Override
 	public int insertMember(MemberVO mv) {
 
