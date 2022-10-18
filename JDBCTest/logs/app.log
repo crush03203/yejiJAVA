@@ -1,0 +1,2 @@
+sql : insert into MYMEMBER  (MEM_ID, MEM_NAME, MEM_TEL, MEM_ADDR, REG_DT) values (?, ? ,? ,?, sysdate)
+파라미터 정보 => memId : q001, memName : 이농부, memTel : 7777-7777, memAddr : 농부가되고싶은 감자동

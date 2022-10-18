@@ -1,8 +1,9 @@
 package kr.or.ddit.member.service;
 
 import java.util.List;
-import kr.or.ddit.member.dao.MemberDaoImple;
+import kr.or.ddit.member.dao.MemberDaoImpleForJDBC;
 import kr.or.ddit.member.dao.IMemberDao;
+import kr.or.ddit.member.dao.MemberDaoImpl;
 import kr.or.ddit.member.vo.MemberVO;
 import sun.security.jca.GetInstance;
 
@@ -15,7 +16,7 @@ public class MemberServiceImpl implements IMemberService{
 	
 	
 	private MemberServiceImpl() {
-	      memDao = MemberDaoImple.getInstance();
+	      memDao = MemberDaoImpl.getInstance();
 	      
 	     
 	   }

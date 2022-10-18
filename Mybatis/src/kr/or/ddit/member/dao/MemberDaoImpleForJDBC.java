@@ -14,7 +14,7 @@ import kr.or.ddit.member.vo.MemberVO;
 import kr.or.util.JDBCUtil3;
 import sun.security.jca.GetInstance;
 
-public class MemberDaoImple implements IMemberDao {
+public class MemberDaoImpleForJDBC implements IMemberDao {
 	
 	private static IMemberDao memDao;
 	
@@ -24,12 +24,12 @@ public class MemberDaoImple implements IMemberDao {
 	private ResultSet rs;
 
 	
-	private MemberDaoImple() {
+	private MemberDaoImpleForJDBC() {
 	}
 	
 	public static IMemberDao getInstance() {
 		if(memDao == null) {
-			memDao = new MemberDaoImple();
+			memDao = new MemberDaoImpleForJDBC();
 		}
 		return memDao;
 	}
