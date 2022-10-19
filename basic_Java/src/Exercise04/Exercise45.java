@@ -10,5 +10,7 @@ package Exercise04;
  *
  */
 public class Exercise45 {
-
+	public static void main(String[] args) {
+//		new Scanner
+	}
 }
