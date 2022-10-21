@@ -1,18 +1,16 @@
 package kr.or.ddit.basic;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import kr.or.ddit.util.JDBCUtil2;
 
 /*
 	회원정보를 관리하는 프로그램을 작성하는데 
-	아래의 메뉴를 모두 구현하시오. (CRUD기능 구현하기)
+	아래의 메뉴를 모두 구현하시오. (CRUD기능 구현하기) //create, read, update, delete
 	(DB의 MYMEMBER테이블을 이용하여 작업한다.)
 	
 	* 자료 삭제는 회원ID를 입력 받아서 삭제한다.
@@ -23,7 +21,7 @@ import kr.or.ddit.util.JDBCUtil2;
 		1. 자료 입력			---> insert
 		2. 자료 삭제			---> delete
 		3. 자료 수정			---> update
-		4. 전체 자료 출력	---> select
+		4. 전체 자료 출력			---> select
 		5. 작업 끝.
 	----------------------
 	 
