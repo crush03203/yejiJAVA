@@ -16,6 +16,7 @@ public class FoodApplication {
     }
     
     public static CustomerVO getSession() {
+    	
         return session;
     }
     public static JdbcTemplate getTemplate() {

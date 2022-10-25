@@ -37,6 +37,7 @@
  	</environments>
  	
  	<mappers>
+ 	<!-- mapper(메퍼) xml -->
  		<mapper resource="mappers/member.xml"/>
  			
  		

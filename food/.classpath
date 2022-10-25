@@ -8,5 +8,11 @@
 	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/305호 5팀 초보프로젝트/spring-core-5.3.7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/305호 5팀 초보프로젝트/spring-jdbc-5.3.7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/305호 5팀 초보프로젝트/spring-tx-5.3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/초급프로젝트/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/초급프로젝트/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/초급프로젝트/spring-beans-5.3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/초급프로젝트/spring-core-5.3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/초급프로젝트/spring-jdbc-5.3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC-12/Desktop/초급프로젝트/spring-tx-5.3.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

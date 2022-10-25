@@ -320,7 +320,7 @@ public class T01MemberInfoTest {
 	 */
 	private boolean checkMember(String memId) {
 		
-		boolean exist = false;
+		boolean exist = false; //존재하는지 존재하지 않는 지 
 		
 		try {
 			conn = JDBCUtil2.getConnection();
