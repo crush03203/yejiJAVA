@@ -16,6 +16,8 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 //컨테이너 
 public class T01ServletLifecycle extends HttpServlet {
 	/*
+	 * Http를 서블릿하는 HttpServlet class
+	 * 
 	 * 서블릭이란?
 	 * 
 	 * 컨테이너(서블릿 엔진)에 의해 관리되는 자바기반 웹컴포넌트로서, 동적인 웹 컨텐츠의 생성을 가능하게 해준다.
@@ -27,8 +29,8 @@ public class T01ServletLifecycle extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		// 초기화 코드 작성
-		System.out.println("init() 호출된.");
+		// 초기화 코드 작성 /init 메소드 
+		System.out.println("init() 호출됨.");
 
 	}
 
@@ -37,18 +39,27 @@ public class T01ServletLifecycle extends HttpServlet {
 			throws ServletException, IOException {
 		
 		// 실제적인 작업 수행이 시작되는 지점. (자바의 메인메서드 역할)
-		System.out.println("Serverr");
+		System.out.println("Serveice() 호출됨");
 		super.service(req, resp);
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
 		// 메서드 방식이 POST인 경우 호출됨
 		System.out.println("doPost() 호출됨.");
 	}
-
+	
+	   @Override
+	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+			   throws ServletException, IOException {
+	      // 메서드 방식이 get인 경우 호출됨
+	      System.out.println("doGet() 호출됨.");
+	      
+	      throw new ServletException("오류오류오류오류오류오류오류오류오류");
+	   }
+	   
 	@Override
 	public void destroy() {
 		// 서블릭 객체 소멸시(컨테이너로부터 제거 전) 호출됨

@@ -203,9 +203,6 @@ public class boardMain {
 			
 			boardNo = scan.next();
 			
-			
-		
-		
 	}
 
 	//글 삭제
