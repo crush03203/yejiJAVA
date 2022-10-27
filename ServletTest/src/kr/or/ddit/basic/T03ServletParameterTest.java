@@ -61,11 +61,12 @@ public class T03ServletParameterTest extends HttpServlet {
 		}
 		out.print("</body></html>");
 	}
-
+	
+//아래있는 게 없으면 메소드가 없기때문에 405가 뜬다
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
-		
+//		이게 없으면 에러가 난다 첫 예제처럼 아무것도 안한 상태가 된다
 	
 	}
 

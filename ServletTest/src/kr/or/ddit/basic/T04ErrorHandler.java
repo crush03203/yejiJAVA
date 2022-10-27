@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class T04ErrorHandler extends HttpServlet{
-	
+	//비연결성 stateless //상태가 유지되지 않는다
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Throwable throwable = 
