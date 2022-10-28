@@ -5,10 +5,12 @@
  	<servlet>
  		<servlet-name>T01ServletLifecycle</servlet-name>
  		<servlet-class>kr.or.ddit.basic.T01ServletLifecycle</servlet-class>
+ 		<load-on-startup>1</load-on-startup>
  	</servlet>
  	<servlet-mapping>
  		<servlet-name>T01ServletLifecycle</servlet-name>
  		<url-pattern>/T01ServletLifecycle</url-pattern>
+ 
  	</servlet-mapping>
  
  	<servlet>
@@ -58,7 +60,92 @@
  		<url-pattern>/T06ServletSessionTest</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+ 		<servlet-name>T07ServletContextTest</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T07ServletContextTest</servlet-class>
+ 	</servlet>
+	<servlet-mapping>
+ 		<servlet-name>T07ServletContextTest</servlet-name>
+ 		<url-pattern>/T07ServletContextTest</url-pattern>
+	</servlet-mapping>
 	
+	<servlet>
+ 		<servlet-name>T09ServletContextListenerTest</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T09ServletContextListenerTest</servlet-class>
+ 	</servlet>
+	<servlet-mapping>
+ 		<servlet-name>T09ServletContextListenerTest</servlet-name>
+ 		<url-pattern>/T09ServletContextListenerTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+ 		<servlet-name>T10ServletContextListenerTest2</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T10ServletContextListenerTest2</servlet-class>
+ 	</servlet>
+	<servlet-mapping>
+ 		<servlet-name>T10ServletContextListenerTest2</servlet-name>
+ 		<url-pattern>/T10ServletContextListenerTest2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+ 		<servlet-name>T11HttpSessionListenerTest</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T11HttpSessionListenerTest</servlet-class>
+ 	</servlet>
+	<servlet-mapping>
+ 		<servlet-name>T11HttpSessionListenerTest</servlet-name>
+ 		<url-pattern>/T11HttpSessionListenerTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+ 		<servlet-name>T12ImageServlet</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T12ImageServlet</servlet-class>
+ 	</servlet>
+	<servlet-mapping>
+ 		<servlet-name>T12ImageServlet</servlet-name>
+ 		<url-pattern>/T12ImageServlet</url-pattern>
+	</servlet-mapping>
+	
+
+
+
+
+
+
+
+
+	<listener>
+		<listener-class>kr.or.ddit.basic.MySerlvetContextListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>kr.or.ddit.basic.MyServletRequestListenere</listener-class>
+	</listener>
+	<listener>
+		<listener-class>kr.or.ddit.basic.MyHttpSessionListener</listener-class>
+	</listener>
+	
+	
+	
+	
+	
+	
+	<filter>
+		<filter-name>T08ServletFiter2</filter-name>
+		<filter-class>kr.or.ddit.basic.T08ServletFiter2</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>T08ServletFiter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+	
+	<filter>
+		<filter-name>T08ServletFiter</filter-name>
+		<filter-class>kr.or.ddit.basic.T08ServletFiter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>T08ServletFiter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
 		<error-page>
 <!-- 		<error-code>500</error-code> -->
 	<exception-type>javax.servlet.ServletException</exception-type>
