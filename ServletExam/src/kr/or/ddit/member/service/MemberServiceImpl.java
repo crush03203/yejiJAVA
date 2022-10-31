@@ -67,5 +67,10 @@ int cnt = memDao.deleteMember(memId);
 		
 		return memList;
 	}
+	@Override
+	public MemberVO getMember(String memId) {
+		// TODO Auto-generated method stub
+		return memDao.getMember(memId);
+	}
 
 }

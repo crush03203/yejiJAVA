@@ -27,6 +27,13 @@ public interface IMemberService {
        */
       
       public boolean checkMember(String memID);
+      /**
+       * 주어진 회원ID가 존재하는 지 여부를 알아내기 위한 메서드
+       * @param memId 확인대상 회원ID
+       * @return 해당 회원 ID가 있으면 true, 없으면 false
+       */
+      
+      public MemberVO getMember(String memID);
       
       /**
        * 회원정정보를 수정하기 위한 메서드

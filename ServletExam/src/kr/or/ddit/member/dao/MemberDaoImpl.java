@@ -67,4 +67,9 @@ implements IMemberDao{
 		return selectList("member.searchMember",mv);
 	}
 
+	@Override
+	public MemberVO getMember(String memId) {
+		return selectOne("member.selectMember", memId);
+	}
+
 }
