@@ -12,27 +12,34 @@ import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 
 @WebServlet("/member/delete.do")
-public class DeleteMemberController extends HttpServlet{ 
+public class DeleteMemberController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String memId = req.getParameter("memId");
-		
-		IMemberService memberService = 
-				MemberServiceImpl.getInstance();
-		
+
+		IMemberService memberService = MemberServiceImpl.getInstance();
+
 		int cnt = memberService.removeMember(memId);
-		
+
+		String msg = "";
+		if (cnt > 0) {
+			msg = "성공";
+			// 송공
+		} else {
+			msg = "실패";
+			// 실패
+
+		}
+		req.getSession().setAttribute("msg", msg);
 		resp.sendRedirect(req.getContextPath() + "/member/list.do");
-	
+
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
-	
-	
-	
+
 }

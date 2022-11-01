@@ -5,6 +5,10 @@
 
 <%
 	List<MemberVO> memList = (List<MemberVO>) request.getAttribute("memList");
+
+String msg = (String) session.getAttribute("msg") == null ? 
+			"" : (String) session.getAttribute("msg");
+session.removeAttribute("msg");
 %>
 
 <!DOCTYPE html>
@@ -29,34 +33,56 @@
 		%>
 
 		<tr>
-			<td><%out.print(memList.get(i).getMemId()); %></td>
-			<td><a href = "detail.do?memId=<%out.print(memList.get(i).getMemId()); %>"><%out.print(memList.get(i).getMemName()); %></a></td>
-			<td><%out.print(memList.get(i).getMemTel()); %></td>
-			<td><%= memList.get(i).getMemAddr() %></td>
-			
-<%-- 	두개 동일한 것<td><%out.print(memList.get(i).getMemTel()); %></td> --%>
-<%-- 			<td><%= memList.get(i).getMemAddr() %></td> --%>
-			
+			<td>
+				<%
+					out.print(memList.get(i).getMemId());
+				%>
+			</td>
+			<td><a
+				href="detail.do?memId=<%out.print(memList.get(i).getMemId());%>">
+					<%
+						out.print(memList.get(i).getMemName());
+					%>
+			</a></td>
+			<td>
+				<%
+					out.print(memList.get(i).getMemTel());
+				%>
+			</td>
+			<td><%=memList.get(i).getMemAddr()%></td>
+
+			<%-- 	두개 동일한 것<td><%out.print(memList.get(i).getMemTel()); %></td> --%>
+			<%-- 			<td><%= memList.get(i).getMemAddr() %></td> --%>
+
 		</tr>
 
 		<%
 			}
 
 		} else {
-			
 		%>
-		
+
 		<tr>
-			<td colspan="4"> 조회된 데이터가 없습니다.</td>
+			<td colspan="4">조회된 데이터가 없습니다.</td>
 		</tr>
 		<%
-		}
+			}
 		%>
 		<tr align="center">
 			<td colspan="4"><a href="insert.do">[회원 등록]</a></td>
 		</tr>
 
 	</table>
+	<%
+		if (msg.equals("성공")) {
+	%>
+	<script>
+		alert('정상적으로 처리되었습니다.');
+	</script>
+	<%
+		}
+	%>
+
 
 </body>
 </html>

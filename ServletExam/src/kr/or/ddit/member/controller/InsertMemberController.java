@@ -44,6 +44,17 @@ public class InsertMemberController extends HttpServlet {
 		
 		int cnt = memberService.registMember(mv);
 		
+		String msg = "";
+		if(cnt > 0) {
+			msg = "성공";
+			//송공
+		} else {
+			msg = "실패";
+			//실패
+			
+		}
+		req.getSession().setAttribute("msg", msg);
+		
 //		req.getRequestDispatcher("/member/list.do")
 //									.forward(req, resp);
 		
