@@ -6,8 +6,7 @@
 <%
 	List<MemberVO> memList = (List<MemberVO>) request.getAttribute("memList");
 
-String msg = (String) session.getAttribute("msg") == null ? 
-			"" : (String) session.getAttribute("msg");
+String msg = (String) session.getAttribute("msg") == null ? "" : (String) session.getAttribute("msg");
 session.removeAttribute("msg");
 %>
 
@@ -24,6 +23,7 @@ session.removeAttribute("msg");
 			<th>이름</th>
 			<th>전화번호</th>
 			<th>주소</th>
+			<th>첨부파일Id</th>
 		</tr>
 
 		<%
@@ -50,7 +50,7 @@ session.removeAttribute("msg");
 				%>
 			</td>
 			<td><%=memList.get(i).getMemAddr()%></td>
-
+		<td><%=memList.get(i).getAtchFileId()%></td>
 			<%-- 	두개 동일한 것<td><%out.print(memList.get(i).getMemTel()); %></td> --%>
 			<%-- 			<td><%= memList.get(i).getMemAddr() %></td> --%>
 
@@ -63,13 +63,13 @@ session.removeAttribute("msg");
 		%>
 
 		<tr>
-			<td colspan="4">조회된 데이터가 없습니다.</td>
+			<td colspan="5">조회된 데이터가 없습니다.</td>
 		</tr>
 		<%
 			}
 		%>
 		<tr align="center">
-			<td colspan="4"><a href="insert.do">[회원 등록]</a></td>
+			<td colspan="5"><a href="insert.do">[회원 등록]</a></td>
 		</tr>
 
 	</table>

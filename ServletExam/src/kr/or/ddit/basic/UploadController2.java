@@ -38,7 +38,9 @@ public class UploadController2 extends HttpServlet {
             
             System.out.println(part.getHeader("content-disposition"));
             
+            
             fileName = getfileName(part);
+            
             
             if(fileName != null && !fileName.equals("")) {
                // 폼필드가 아니거나 파일이 비어있지 않은 경우...

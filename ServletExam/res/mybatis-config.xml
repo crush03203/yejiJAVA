@@ -9,6 +9,8 @@
  	<settings>
  		<!-- DB 컬럼명을 낙타표기법으로 속성명과 자동 매핑 처리하기 -->
  		<setting name="mapUnderscoreToCamelCase" value="true"/>
+ 		<setting name="jdbcTypeForNull" value="NULL"/>
+ 	
  	</settings>
  	
  	<!--  데이터 등록시 해당 속상값이 존재하지 않으면(즉, null) '부적합한 열유형 1111'예외발생함.
@@ -17,6 +19,8 @@
  		 
  	<typeAliases>
       <typeAlias type="kr.or.ddit.member.vo.MemberVO" alias="MemberVO"/>
+      <typeAlias type="kr.or.ddit.comm.vo.AtchFileVO" alias="AtchFileVO"/>
+      
    </typeAliases>
  	<environments default="dev">
  	
@@ -39,6 +43,7 @@
  	<mappers>
  	<!-- mapper(메퍼) xml -->
  		<mapper resource="mappers/member.xml"/>
+ 		<mapper resource="mappers/atchFile.xml"/>
  			
  		
  	</mappers>
