@@ -36,7 +36,7 @@
       
       
    </insert>
-   
+<!--    id를 기억하고 있다가 MemberDAOImpe에다가 잘 적어준다 -->
    <update id="updateMember" parameterType="kr.or.ddit.member.vo.MemberVO">
       update mymember
       set mem_name = #{memName},  
@@ -78,6 +78,8 @@
         where mem_id = #{memId}
       
    </select>
+   
+   
    
    
    <resultMap type="MemberVO" id="memMap">

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lprod">
+   
+<!--    <insert id="insertLprod" parameterType="Lprod"> -->
+<!--    </insert>    -->
+   
+<!--    <update id="updateLprod" parameterType="Lprod"> -->
+<!--    </update> -->
+   
+<!--    <delete id="deleteLprod" parameterType="String"> -->
+<!--    </delete> -->
+   
+   <select id="selectAllLprod" resultType="Lprod">
+   	select LPROD_ID, LPROD_GU, LPROD_NM
+		from lprod
+   </select>
+   
+</mapper>

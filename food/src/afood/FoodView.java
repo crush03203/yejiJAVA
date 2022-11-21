@@ -195,7 +195,7 @@ public class FoodView {
 	         System.out.printf("%s\t%s\t%d\t%s\t%s\n", vo.getMenuId(), vo.getMenuName(), vo.getMenuPrice(), vo.getMenuCa(),
 	               vo.getMenuInt());
 	         number = controller.insertOrder(menuId);
-	         if (number > 0) { // 성공하면 1
+	         if (number > 0) { // 성공하면 0
 	            System.out.println("\n주문이 완료되었습니다. ❤감사합니다❤\n");
 	            System.out.println("============================================================================");
 	            number = HomeMenu.MAIN.getMenu();

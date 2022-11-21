@@ -44,10 +44,10 @@
  	<!-- mapper(메퍼) xml -->
  		<mapper resource="mappers/member.xml"/>
  		<mapper resource="mappers/atchFile.xml"/>
- 			
+ 		<mapper resource="mappers/lprod.xml"/>	
  		
  	</mappers>
- 
+
  
  </configuration> 
   

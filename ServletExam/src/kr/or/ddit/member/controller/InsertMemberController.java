@@ -46,8 +46,8 @@ public class InsertMemberController extends HttpServlet {
 		//첨부파일 목록 저장하기(공통기능)
 		 atchFileVO = fileService.saveAtchFileList(req);
 		
-//		IMemberService memService = 
-//				MemberServiceImpl.getInstance();
+		IMemberService memService = 
+				MemberServiceImpl.getInstance();
 		
 		MemberVO mv = new MemberVO();
 		mv.setMemId(memId);
