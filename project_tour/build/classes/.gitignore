@@ -1,0 +1,11 @@
+/bus/
+/common/
+/controller/
+/dao/
+/db.properties
+/log4j2.xml
+/mappers/
+/mybatis-config.xml
+/service/
+/util/
+/vo/
